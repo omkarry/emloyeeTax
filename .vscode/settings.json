@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/cecaffac-b530-4ca0-bfba-1450d3953148/resourceGroups/DefaultResourceGroup-null/providers/Microsoft.Web/sites/employee-tax-declaration",
+  "appService.deploySubpath": "build"
+}

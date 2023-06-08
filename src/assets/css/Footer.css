@@ -1,0 +1,7 @@
+.footer {
+  position: sticky;
+  width: 100%;
+  bottom: 0;
+  height: 60px;   /* Height of the footer */
+  background: #6cf;
+}
