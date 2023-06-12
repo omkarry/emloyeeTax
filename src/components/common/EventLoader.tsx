@@ -2,8 +2,8 @@ import ContentLoader from 'react-content-loader'
 
 const EventsLoader = () => (
   <ContentLoader
-    width={700}
-    height={300}
+    width={400}
+    height={200}
     viewBox="0 0 700 300"
     backgroundColor="#f5f5f5"
     foregroundColor="#dbdbdb"

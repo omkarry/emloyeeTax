@@ -6,7 +6,7 @@ const useHttp = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const axiosInstance = axios.create({
-    baseURL: "https://taxdeclaration.azurewebsites.net/api",
+    baseURL: "https://taxdeclaration.azurewebsites.net/api/",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

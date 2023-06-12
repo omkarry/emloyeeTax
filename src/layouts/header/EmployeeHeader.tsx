@@ -52,3 +52,5 @@ const EmployeeHeader = () => {
     </header>
   );
 }
+
+export default EmployeeHeader;

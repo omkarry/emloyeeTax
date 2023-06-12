@@ -6,7 +6,7 @@ const CreateAdminPage = () => {
   return (
     <>
       <AdminHeader />
-      <RegistrationForm />
+      <RegistrationForm title="Admin"/>
       <footer>
         <Footer />
       </footer>

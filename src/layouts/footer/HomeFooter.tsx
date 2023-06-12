@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function HomeFooter() {
   return (
-    <div className='bg-dark footer text-center text-lg-start text-muted py-1'>
+    <div className='bg-dark text-center text-lg-start text-muted py-1'>
       <section className=''>
         <div className='container text-center text-md-start mt-5'>
           <div className='row mt-3'>
