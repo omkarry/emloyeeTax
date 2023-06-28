@@ -9,25 +9,26 @@ const ViewEmployees = () => {
   const { loading, axiosInstance } = useHttp();
   const [employees, setEmployees] = useState<EmployeeData[]>([]);
   const getEmployees = () => {
-    axiosInstance.get(`Employee/employees`)
-      .then(response => {
-        const employeesWithImageUrl = response.data.result.map((employee: EmployeeData) => {
-          const imageUrl = convertBytesToImageUrl(employee.profileImageBytes);
-          return { ...employee, profileImageUrl: imageUrl };
-        });
-        setEmployees(employeesWithImageUrl);
-      })
+    axiosInstance.get(`Employee/Employees`)
+    .then(response => {
+      const employeesWithImages = response.data.result.map((employee: EmployeeData) => {
+        const profileImageBytes = employee.profileImageBytes;
+        const profileImage = profileImageBytes ? `data:image/jpeg;base64,${profileImageBytes}` : undefined;
+        return { ...employee, profileImage };
+      });
+      setEmployees(employeesWithImages);
+    })
       .catch(error => {
         console.log(error);
       })
   }
 
-  const convertBytesToImageUrl = (byteData: string | null): string | null => {
-    if (byteData) {
-      return URL.createObjectURL(new Blob([byteData]));
-    }
-    return null;
-  };
+  // const convertBytesToImageUrl = (byteData: string | null): string | null => {
+  //   if (byteData) {
+  //     return URL.createObjectURL(new Blob([byteData]));
+  //   }
+  //   return null;
+  // };
 
   useEffect(() => {
     getEmployees();
@@ -44,28 +45,12 @@ const ViewEmployees = () => {
         ) : (
           <div className="row">
             {employees.map(employee => (
-              // <div className="col-md-4" key={employee.id}>
-              //   <div className="card mb-3 p-2">
-              //     <img
-              //       src={employee.profileImageBytes != null ? employee.profileImageBytes : ProfilePhoto}
-              //       className="card-img-top"
-              //       alt={employee.name}
-              //     />
-              //     <div className="card-body">
-              //       <h5 className="card-title">{employee.name}</h5>
-              //       <p className="card-text">{employee.email}</p>
-              //       <button className="btn btn-primary">View Salary Details</button>
-              //       <button className="btn btn-secondary">View Profile</button>
-              //     </div>
-              //   </div>
-
-              // </div>
               <div className="col-md-4" key={employee.id}>
                 <div className="card my-1 p-2">
                   <div className="row">
                     <div className="col-md-4">
                       <div className="image">
-                        <img src={employee.profileImageBytes != null ? employee.profileImageBytes : ProfilePhoto}
+                        <img src={employee.profileImageBytes != undefined ? employee.profileImage : ProfilePhoto}
                           className="card-img-top rounded"
                           alt={employee.name}
                           height="100" />

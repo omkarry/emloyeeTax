@@ -2,17 +2,20 @@ import { useNavigate } from "react-router-dom";
 
 const TOKEN_KEY = 'token';
 const ROLE_KEY = 'role';
+const USER_ID = 'userId';
 
 export const useAuth = () => {
 
-  const login = (token:string, role:string) => {
+  const login = (token:string, role:string, userId:string) => {
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(ROLE_KEY, role);
+    localStorage.setItem(USER_ID, userId);
   };
 
   const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(ROLE_KEY);
+    localStorage.removeItem(USER_ID);
   };
 
   const isAuthenticated = () => {

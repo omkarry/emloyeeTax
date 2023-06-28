@@ -8,12 +8,15 @@ import useHttp from '../../config/https';
 import Loader from './Loader';
 import TextField from '@mui/material/TextField/TextField';
 import jwt_decode from "jwt-decode";
+import { IconButton, InputAdornment } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const LoginForm = () => {
   const { login} = useAuth();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [showModal, setShowModal] = useState(true);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [validUser, setValidUser] = useState("");
@@ -40,7 +43,7 @@ const LoginForm = () => {
 
   const handleLogin = () => {
     axiosInstance
-      .post("Authenticate/login", {
+      .post("Authenticate/Login", {
         username,
         password
       }, {
@@ -49,21 +52,24 @@ const LoginForm = () => {
         },
       })
       .then((response) => {
-        const data: any = response.data;
+        const data: any = response.data.result;
 
         if (response.status === 200) {
           setValidUser("");
           console.log(data.token);
           localStorage.setItem("access_token", JSON.stringify(data));
-          login(data.token, data.role);
+          login(data.token, data.role, data.userId);
           navigate(`/${data.role}/dashboard`);
           window.location.reload();
           console.log(data);
         } else {
+          setValidUser("Invalid username or password");
+          alert(response.data.result)
           console.error(data.error);
         }
       })
       .catch((error) => {
+        alert(error);
         setValidUser("Invalid username or password");
         console.error(error);
       });
@@ -128,9 +134,21 @@ const LoginForm = () => {
                       id="outlined-password-input"
                       label="Password"
                       name='password'
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       autoComplete="current-password"
                       onChange={e => setPassword  (e.target.value)}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={() => setShowPassword(!showPassword)}
+                              edge="end"
+                            >
+                              {showPassword ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                          </InputAdornment>
+                        )
+                      }}
                     />
                   </div>
                 </div>

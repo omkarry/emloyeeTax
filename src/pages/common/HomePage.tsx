@@ -2,10 +2,14 @@ import HomeHeader from "../../layouts/header/HomeHeader";
 import HomeMain from "../../assets/images/home-image.jpg"
 import HomeFooter from "../../layouts/footer/HomeFooter";
 import EventsLoader from "../../components/common/EventLoader";
+import Helmet from 'react-helmet';
 
 const HomePage = () => {
   return (
     <>
+    <Helmet>
+      <title>Home - Employee Portal</title>
+    </Helmet>
       <HomeHeader />
       <div>
         <img src={HomeMain} alt="Dashboard-Head-Image" width="100%" height="50%" className="shadow " />

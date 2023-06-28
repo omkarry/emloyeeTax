@@ -5,11 +5,7 @@ import AdminHeader from "../../layouts/header/AdminHeader";
 const CreateAdminPage = () => {
   return (
     <>
-      <AdminHeader />
       <RegistrationForm title="Admin"/>
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 }

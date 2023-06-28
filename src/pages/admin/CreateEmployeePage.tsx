@@ -5,11 +5,7 @@ import AdminHeader from "../../layouts/header/AdminHeader";
 const CreateEmployeePage = () => {
   return (
     <>
-      <AdminHeader />
       <RegistrationForm title="Employee" />
-      <footer>
-        <Footer />
-      </footer>
     </>
   );
 }
