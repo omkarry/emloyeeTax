@@ -33,7 +33,7 @@ const SalaryDetailsForm = () => {
   }
 
   const getFinancialYears = () => {
-    axiosInstance.get(`RegimeYear/FinancialYears`)
+    axiosInstance.get(`FinancialYear/FinancialYears`)
       .then(response => {
         setFinancialYears(response.data.result);
       })
@@ -91,10 +91,10 @@ const SalaryDetailsForm = () => {
   return (
     <>
       <div className="container-fluid">
-        <div className="container w-50 border rounded p-0 my-1">
-          <form onSubmit={handleSubmit}>
-            <div className="form-header h4 text-center bg-secondary">
-              <div className="p-3 text-white">
+        <div className="container w-50 rounded px-0 py-2">
+          <form onSubmit={handleSubmit} className="border rounded">
+            <div className="form-header h4 text-center bg-white rounded">
+              <div className="p-3 text-dark">
                 Salary Details
               </div>
             </div>

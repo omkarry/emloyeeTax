@@ -7,16 +7,17 @@ import useHttp from "../../config/https";
 import { useEffect, useState } from "react";
 import ProfilePhoto from "../../assets/images/img_avatar.png"
 import { EmployeeData } from "../../data/EmployeeData";
+import { Admin } from "../../data/Admin";
 
 const AdminHeader = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const userId = localStorage.getItem('userId');
   const { axiosInstance, loading } = useHttp();
-  const [user, setUserDetails] = useState<EmployeeData>();
+  const [user, setUserDetails] = useState<Admin>();
 
   const getEmployeeDetails = () => {
-    axiosInstance.get(`Employee/${userId}`)
+    axiosInstance.get(`Admin/${userId}`)
       .then(response => {
         setUserDetails({ ...response.data.result, profileImageBytes: response.data.profileImageBytes ? URL.createObjectURL(new Blob(response.data.profileImageBytes)) : null })
       })
@@ -53,9 +54,9 @@ const AdminHeader = () => {
       </Navbar>
       <div className="dropdown col-md-1 text-center">
         <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle h5" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src={user?.profileImageBytes != null ? user.profileImageBytes : ProfilePhoto} className="rounded-circle shadow-4 mx-1"
+          <img src={ProfilePhoto} className="rounded-circle shadow-4 mx-1"
             width="30px" />
-          {user?.name}
+          {user?.username}
         </a>
         <ul className="dropdown-menu text-small">
           <li><Link className="dropdown-item" to="/Admin/Profile">Profile</Link></li>

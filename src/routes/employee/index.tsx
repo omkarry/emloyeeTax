@@ -13,7 +13,7 @@ const EmployeeRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<EmployeeMainContent />} >
-      <Route path="/" element={<Navigate to="/Employee/Dashboard" replace/>} />
+        <Route path="/" element={<Navigate to="/Employee/Dashboard" replace />} />
         <Route path="/Employee/Dashboard" element={<EmployeeDashboardPage />} />
         <Route path="/Employee/SeeSalaryDetails" element={<SeeSalaryDetails />} />
         <Route path="/Employee/Profile" element={<EmployeeProfilePage />} />

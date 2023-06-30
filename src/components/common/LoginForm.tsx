@@ -33,14 +33,6 @@ const LoginForm = () => {
     setShowModal(false);
   }
 
-  // const handleLogin = () => {
-  //   const token = 'example-token';
-  //   const role = 'admin';
-  //   login(token, role);
-  //   navigate(`/${role}/dashboard`);
-  // };
-
-
   const handleLogin = () => {
     axiosInstance
       .post("Authenticate/Login", {
@@ -57,9 +49,8 @@ const LoginForm = () => {
         if (response.status === 200) {
           setValidUser("");
           console.log(data.token);
-          localStorage.setItem("access_token", JSON.stringify(data));
-          login(data.token, data.role, data.userId);
-          navigate(`/${data.role}/dashboard`);
+          login(data.token, data.refreshToken.result, data.role, data.userId);
+          navigate(`/${data.role}/Dashboard`);
           window.location.reload();
           console.log(data);
         } else {

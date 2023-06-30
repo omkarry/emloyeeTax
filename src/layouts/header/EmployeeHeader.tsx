@@ -23,7 +23,10 @@ const EmployeeHeader = () => {
   const getEmployeeDetails = () => {
     axiosInstance.get(`Employee/${userId}`)
       .then(response => {
-        setUserDetails({ ...response.data.result, profileImageBytes: response.data.profileImageBytes ? URL.createObjectURL(new Blob(response.data.profileImageBytes)) : null })
+        const employeesWithImage:(EmployeeData) = response.data.result;
+          const profileImageBytes = employeesWithImage.profileImageBytes;
+          const profileImage = profileImageBytes ? `data:image/jpeg;base64,${profileImageBytes}` : undefined;
+          setUserDetails({...employeesWithImage, profileImage});
       })
       .catch(error => {
         console.log(error);
@@ -52,8 +55,8 @@ const EmployeeHeader = () => {
       </Navbar>
       <div className="dropdown col-md-2 text-center">
         <a href="#" className="d-block link-dark text-decoration-none dropdown-toggle h5" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src={user?.profileImageBytes != null ? user.profileImageBytes : ProfilePhoto} className="rounded-circle shadow-4 mx-1"
-            width="30px" />
+          <img src={user?.profileImage != undefined ? user.profileImage : ProfilePhoto} className="rounded-circle shadow-4 mx-1"
+            width={"40px"} height={"40px"} />
           {user?.name}
         </a>
         <ul className="dropdown-menu text-small">

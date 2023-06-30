@@ -162,7 +162,7 @@ const RegistrationForm: React.FC<Props> = ({ title }) => {
         <div className="container h-100 my-auto">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-              <div className="card" style={{ "borderRadius": "15px;", "margin": "13px 0" }}>
+              <div className="card" style={{ "borderRadius": "15px", "margin": "13px 0" }}>
                 <div className="card-body p-3">
                   <div className="text-center mx-auto">
                     <img src={Logo}

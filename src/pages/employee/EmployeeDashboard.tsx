@@ -1,12 +1,18 @@
 import React from 'react';
 import EmployeeDashboard from '../../components/employee/EmployeeDashboard';
 import EmployeeHeader from '../../layouts/header/EmployeeHeader';
+import { Helmet } from 'react-helmet';
 
 const EmployeeDashboardPage = () => {
   return (
-    <div className='container-fluid'>
-      <EmployeeDashboard />
-    </div>
+    <>
+      <Helmet>
+        <title>Employee Dashboard</title>
+      </Helmet>
+      <div className='container-fluid'>
+        <EmployeeDashboard />
+      </div>
+    </>
   );
 };
 
