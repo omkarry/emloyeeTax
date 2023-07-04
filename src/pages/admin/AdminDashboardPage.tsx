@@ -39,7 +39,7 @@ const AdminDashboardPage = () => {
                   {count?.numberOfEmployeesWorking != undefined ? count?.numberOfEmployeesWorking : "Unable to load"}
                 </div>
               </div>
-              </Link>
+            </Link>
           </div>
 
           <div className="col-md-4 border bg-color-2">
@@ -51,7 +51,8 @@ const AdminDashboardPage = () => {
                 Pending Declarations :
               </div>
               <div className="text-center text-success h4 px-1">
-                {count?.numberOfDeclarationPending != undefined ? count?.numberOfDeclarationPending : "Unable to load"}
+                {loading ? <div className="spinner-border text-primary" role="status" /> : 
+                count?.numberOfDeclarationPending != undefined ? count?.numberOfDeclarationPending : "Unable to load"}
               </div>
             </div>
           </div>
@@ -72,12 +73,14 @@ const AdminDashboardPage = () => {
           </div>
 
           <div className="col-md-4 border bg-color-2">
-            <div className="d-flex justify-content-center">
-              <HiUserAdd size={'10rem'} className="text-muted" />
-            </div>
-            <div className="h4 text-center">
-              Add new Employee
-            </div>
+            <Link to="/Admin/AddEmployee" className="text-decoration-none text-dark">
+              <div className="d-flex justify-content-center">
+                <HiUserAdd size={'10rem'} className="text-muted" />
+              </div>
+              <div className="h4 text-center">
+                Add new Employee
+              </div>
+            </Link>
           </div>
         </div>
       </div>
